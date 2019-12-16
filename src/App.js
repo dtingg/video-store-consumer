@@ -10,6 +10,9 @@ import {
 } from "react-router-dom";
 
 import Home from './components/Home';
+import Search from './components/Search';
+import Library from './components/Library';
+import Customers from './components/Customers';
 
 // class App extends Component {
 //   render() {
@@ -28,8 +31,8 @@ import Home from './components/Home';
 // }
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       selectedMovie: 'Happy Feet',
@@ -38,51 +41,47 @@ class App extends Component {
   }
 
   render() {
-// export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+    return (
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/search">Search</Link>
+              </li>
+              <li>
+                <Link to="/library">Library</Link>
+              </li>
+              <li>
+                <Link to="/customers">Customers</Link>
+              </li>
+            </ul>
+          </nav>
 
-        <p>{this.state.selectedCustomer}</p>
+          {/* <p>{this.state.selectedCustomer}</p> */}
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home movie={this.state.selectedMovie}/>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-}
-
-function About() {
-  return <h2>About</h2>;
+          <Switch>
+            <Route path="/search">
+              <Search />
+            </Route>
+            <Route path="/library">
+              <Library />
+            </Route>
+            <Route path="/customers">
+              <Customers />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
-function Users() {
-  return <h2>Users</h2>;
-}
 
 export default App
