@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
@@ -31,14 +32,32 @@ import Customers from './components/Customers';
 // }
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       selectedMovie: 'Happy Feet',
       selectedCustomer: 'Penguins',
+      customers: [],
+      error: "",
     };
   }
+
+  // base_url = "http://localhost:3000/"
+
+  componentDidMount() {
+    // const base_url = "localhost"
+    const url = `${this.props.baseUrl}/customers`
+
+    axios.get(url)
+      .then((response) => {
+        this.setState({ customers: response.data });
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+      });
+  }
+
 
   render() {
     return (
@@ -61,7 +80,7 @@ class App extends Component {
             </ul>
           </nav>
 
-          {/* <p>{this.state.selectedCustomer}</p> */}
+          {/* <p>{this.state.customers}</p> */}
 
           <Switch>
             <Route path="/search">
@@ -71,7 +90,7 @@ class App extends Component {
               <Library />
             </Route>
             <Route path="/customers">
-              <Customers />
+              <Customers customers={this.state.customers}/>
             </Route>
             <Route path="/">
               <Home />
