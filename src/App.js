@@ -94,7 +94,7 @@ class App extends Component {
 
           <Switch>
             <Route path="/search">
-              <Search />
+              <Search initialArr={[]} baseUrl={this.props.baseUrl} />
             </Route>
             <Route path="/library">
               <Library library={this.state.library} />
