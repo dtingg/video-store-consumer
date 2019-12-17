@@ -57,6 +57,13 @@ class App extends Component {
     this.setState({ selectedCustomer: foundCustomer });
   }
 
+  selectMovie = ( movieId ) => {
+    const foundMovie = this.state.library.find((movie) => movie.id === movieId);
+    this.setState({ selectedMovie: foundMovie });
+  }
+
+
+  
 
   render() {
     return (
@@ -87,7 +94,7 @@ class App extends Component {
               <Search initialArr={[]} baseUrl={this.props.baseUrl} />
             </Route>
             <Route path="/library">
-              <Library library={this.state.library} />
+              <Library library={this.state.library} selectMovieCallback={ this.selectMovie }/>
             </Route>
             <Route path="/customers">
               <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
