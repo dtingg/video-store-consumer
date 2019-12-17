@@ -7,14 +7,6 @@ const Customers = ({ customers }) => {
     {...customer} />
   })
 
-
-
-
-
-
-
-
-
   return (
     <div>
       <h2>Customers</h2>

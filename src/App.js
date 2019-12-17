@@ -38,6 +38,7 @@ class App extends Component {
     this.state = {
       selectedMovie: 'Happy Feet',
       selectedCustomer: 'Penguins',
+      library: [],
       customers: [],
       error: "",
     };
@@ -47,15 +48,24 @@ class App extends Component {
 
   componentDidMount() {
     // const base_url = "localhost"
-    const url = `${this.props.baseUrl}/customers`
+    const customer_url = `${this.props.baseUrl}/customers`;
+    const rental_lib_url = `${this.props.baseUrl}/movies`;
 
-    axios.get(url)
+    axios.get(customer_url)
       .then((response) => {
         this.setState({ customers: response.data });
       })
       .catch((error) => {
         this.setState({ error: error.message });
       });
+
+    axios.get(rental_lib_url)
+    .then((response) => {
+      this.setState({ library: response.data });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
   }
 
 
@@ -87,7 +97,7 @@ class App extends Component {
               <Search />
             </Route>
             <Route path="/library">
-              <Library />
+              <Library library={this.state.library} />
             </Route>
             <Route path="/customers">
               <Customers customers={this.state.customers}/>
