@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import './Customer.css';
 
 const Movie = (props) => {
-  const { id, title, overview, release_date, image_url, external_id, movieCallback } = props;
+  const { id, title, overview, release_date, image_url, external_id, movieCallback, action } = props;
 
   const onSelectMovie = () => {
     movieCallback(id, title, overview, release_date, image_url, external_id);
@@ -26,7 +26,7 @@ const Movie = (props) => {
           aria-label="Select"
           onClick={ onSelectMovie }
         >
-          Select
+          { action }
         </button>
     </div>
   );
@@ -40,6 +40,7 @@ Movie.propTypes = {
   image_url: PropTypes.string.isRequired,
   external_id: PropTypes.number.isRequired,
   movieCallback: PropTypes.func.isRequired,
+  action: PropTypes.string.isRequired,
 }
 
 export default Movie;

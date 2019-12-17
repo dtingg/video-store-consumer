@@ -10,6 +10,7 @@ class Search extends Component {
     this.state = {
       query: '',
       searchResults: [],
+      libraryResults: [],
     };
   }
 
@@ -26,29 +27,40 @@ class Search extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
 
+    
+
     if (this.state.query) {
       // this.props.addCardCallback(this.state);
+
+      const results = this.props.currentLibrary.filter((element) => element.title.includes(this.state.query))
+      // this.setState(libraryResults: results)
 
       const search_url = `${this.props.baseUrl}/movies?query=${this.state.query}`;
 
       axios.get(search_url)
         .then((response) => {
-          this.setState({ searchResults: response.data });
+          this.setState({ searchResults: response.data, libraryResults: results, query: "" });
         })
         .catch((error) => {
-          this.setState({ error: error.message });
+          this.setState({ error: error.message, libraryResults: results, query: "" });
         });
 
-      this.setState({
-        query: '',
-      });
+      // this.setState({
+      //   query: '',
+      // });
     }
   }
 
   render() {
-    const formattedResults = this.state.searchResults.map((movie) => {
-      return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.movieCallback } />
+    const libraryResults = this.state.libraryResults.map((movie) => {
+      return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.selectMovieCallback } action={"Select Movie"}/>
     });
+
+    const formattedResults = this.state.searchResults.map((movie) => {
+      return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.addToLibraryCallback } action={"Add to Library"} />
+    });
+
+
 
     return (
       <div>
@@ -72,6 +84,9 @@ class Search extends Component {
             onClick={ this.onSubmitHandler }
           />
         </form>
+        <h3>Results from your library</h3>
+        { libraryResults }
+        <h3>External results</h3>
         { formattedResults }
       </div>
     )
@@ -79,7 +94,9 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  movieCallback: PropTypes.func.isRequired,
+  addToLibraryCallback: PropTypes.func.isRequired,
+  selectMovieCallback: PropTypes.func.isRequired,
+  currentLibrary: PropTypes.array.isRequired,
 }
 
 export default Search;

@@ -157,7 +157,7 @@ class App extends Component {
 
           <Switch>
             <Route path="/search">
-              <Search initialArr={[]} baseUrl={this.props.baseUrl} movieCallback={ this.addToLibrary } />
+              <Search initialArr={[]} baseUrl={this.props.baseUrl} addToLibraryCallback={ this.addToLibrary } selectMovieCallback={ this.selectMovie } currentLibrary={ this.state.library }/>
             </Route>
             <Route path="/library">
               <Library library={this.state.library} movieCallback={ this.selectMovie }/>
