@@ -62,7 +62,27 @@ class App extends Component {
     this.setState({ selectedMovie: foundMovie });
   }
 
+  makeRental = () => {
+    const today = new Date();
+    const data = {
+      customer_id: this.state.selectCustomer.id,
+      due_date: today.setDate(today.getDate() + 7),
+    };
 
+    axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }`, data)
+      .then((response) => {
+        // const updatedData = this.state.cards;
+        // updatedData.push(response.data);
+
+        // this.setState({ 
+        //   cards: updatedData,
+        //   errors: '', 
+        // });
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+      });
+  }
   
 
   render() {

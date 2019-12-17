@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import './Customer.css';
 
 const Customer = (props) => {
-  const { id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count } = props;
+  const { id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count, selectCustomerCallback } = props;
 
   // const onselectPet = () => {
   //   selectPet(id);
@@ -14,10 +14,6 @@ const Customer = (props) => {
   // const onremovePet = () => {
   //   removePet(id);
   // }
-
-  const onCustomerClick = () => {
-    props.selectCustomerCallback(id);
-  };
 
   return (
     <div>
@@ -28,7 +24,7 @@ const Customer = (props) => {
       <p>{ account_credit }</p>
       <p>{ movies_checked_out_count }</p>
       <button
-          onClick={ onCustomerClick }
+          onClick={() => {selectCustomerCallback(id)} }
         >
           Select
       </button>

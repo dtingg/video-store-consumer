@@ -12,7 +12,7 @@ const Customers = ({ customers, selectCustomerCallback }) => {
   return (
     <div>
       <h2>Customers</h2>
-      {customerList}
+      { customerList }
     </div>
   )
 }
