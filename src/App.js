@@ -56,8 +56,8 @@ class App extends Component {
     this.setState({ selectedCustomer: foundCustomer });
   }
 
-  selectMovie = ( movieId ) => {
-    const foundMovie = this.state.library.find((movie) => movie.id === movieId);
+  selectMovie = (id, title, overview, release_date, image_url, external_id) => {
+    const foundMovie = this.state.library.find((movie) => movie.id === id);
     this.setState({ selectedMovie: foundMovie });
   }
 
@@ -92,30 +92,37 @@ class App extends Component {
       });
   }
 
-  addToLibrary = () => {
+  addToLibrary = (id, title, overview, release_date, image_url, external_id) => {
     // console.log("Trying to add movie");
-    // const data = {
-    //   title:
-    //   overview:
-    // };
+    const data = {
+      title: title,
+      overview: overview,
+      release_date: release_date,
+      image_url: image_url,
+      external_id: external_id,
+    };
 
-    // axios.post(`${ this.props.baseUrl }movies`, data)
-    //   .then((response) => {
-    //     const selectedCustomer = this.state.selectedCustomer
-    //     selectedCustomer.movies_checked_out_count += 1
+    axios.post(`${ this.props.baseUrl }movies`, data)
+      .then((response) => {
+        const newMovie = {
+          id: response.data.id,
+          title: data.title,
+          overview: data.overview,
+          release_date: data.release_date,
+          image_url: data.image_url,
+          external_id: data.external_id,
+        };
 
-    //     this.setState({ 
-    //       selectedCustomer: selectedCustomer,
-    //     });
+        const updatedLibrary = this.state.library;
+        updatedLibrary.push(newMovie);
 
-    //     this.setState({ 
-    //       selectedCustomer: {},
-    //       selectedMovie: {},
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     this.setState({ error: error.message });
-    //   });
+        this.setState({ 
+          library: updatedLibrary,
+        });
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+      });
   }
   
 
