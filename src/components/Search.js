@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Movie from './Movie';
 
 class Search extends Component {
@@ -27,11 +28,11 @@ class Search extends Component {
     if (this.state.query) {
       // this.props.addCardCallback(this.state);
 
-      const search_url = `${this.props.baseUrl}/movies`;
+      const search_url = `${this.props.baseUrl}/movies?query=${this.state.query}`;
 
-      axios.get(customer_url)
+      axios.get(search_url)
         .then((response) => {
-          this.setState({ customers: response.data });
+          this.setState({ searchResults: response.data });
         })
         .catch((error) => {
           this.setState({ error: error.message });
@@ -44,7 +45,15 @@ class Search extends Component {
   }
 
 
+
+
+
+
   render() {
+    const formattedResults = this.state.searchResults.map((movie) => {
+      return <Movie key={movie.external_id} {...movie} />
+    });
+
     return (
       <div>
         <form onSubmit={ this.onSubmitHandler }>
@@ -67,6 +76,7 @@ class Search extends Component {
             onClick={ this.onSubmitHandler }
           />
         </form>
+        { formattedResults }
       </div>
     )
   }
