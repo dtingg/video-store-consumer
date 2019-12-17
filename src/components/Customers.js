@@ -1,10 +1,12 @@
 import React from 'react';
 import Customer from './Customer';
 
-const Customers = ({ customers }) => {
+const Customers = ({ customers, selectCustomerCallback }) => {
   const customerList = customers.map((customer) => {
     return <Customer key={customer.id}
-    {...customer} />
+    {...customer}
+    selectCustomerCallback={selectCustomerCallback}
+     />
   })
 
   return (

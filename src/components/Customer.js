@@ -15,16 +15,23 @@ const Customer = (props) => {
   //   removePet(id);
   // }
 
+  const onCustomerClick = () => {
+    props.selectCustomerCallback(id);
+  };
+
   return (
     <div>
-      {/* <p>ID { id }</p> */}
       <p>{ name }</p>
-      {/* <p>{ registered_at }</p> */}
       <p>{ address }</p>
       <p>{ city }, { state } { postal_code }</p>
       <p>{ phone }</p>
       <p>{ account_credit }</p>
       <p>{ movies_checked_out_count }</p>
+      <button
+          onClick={ onCustomerClick }
+        >
+          Select
+      </button>
     </div>
   );
 };
@@ -40,6 +47,7 @@ Customer.propTypes = {
   phone: PropTypes.string.isRequired,
   account_credit: PropTypes.number.isRequired,
   movies_checked_out_count: PropTypes.number.isRequired,
+  selectCustomerCallback: PropTypes.func.isRequired,
   // postal_code: PropTypes.func.isRequired,
   // removePet: PropTypes.func,
 }

@@ -21,7 +21,7 @@ class App extends Component {
 
     this.state = {
       selectedMovie: '',
-      selectedCustomer: '',
+      selectedCustomer: {},
       library: [],
       customers: [],
       error: "",
@@ -52,6 +52,11 @@ class App extends Component {
     });
   }
 
+  selectCustomer = ( customerId ) => {
+    const foundCustomer = this.state.customers.find((customer) => customer.id === customerId);
+    this.setState({ selectedCustomer: foundCustomer });
+  }
+
 
   render() {
     return (
@@ -74,8 +79,8 @@ class App extends Component {
             </ul>
           </nav>
 
-          <p>Selected Customer: {this.state.selectedCustomer}</p>
-          <p>Selected Movie: {this.state.selectedMovie}</p>
+          <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</p>
+          <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }</p>
 
           <Switch>
             <Route path="/search">
@@ -85,7 +90,7 @@ class App extends Component {
               <Library library={this.state.library} />
             </Route>
             <Route path="/customers">
-              <Customers customers={this.state.customers}/>
+              <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
             </Route>
             <Route path="/">
               <Home />
