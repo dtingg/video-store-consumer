@@ -64,12 +64,15 @@ class App extends Component {
 
   makeRental = () => {
     const today = new Date();
+    const dueDate = today.setDate(today.getDate() + 7);
     const data = {
-      customer_id: this.state.selectCustomer.id,
-      due_date: today.setDate(today.getDate() + 7),
+      customer_id: this.state.selectedCustomer.id,
+      due_date: "2019-12-25",
     };
 
-    axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }`, data)
+    console.log(data.due_date);
+
+    axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }/check-out`, data)
       .then((response) => {
         // const updatedData = this.state.cards;
         // updatedData.push(response.data);
@@ -108,6 +111,11 @@ class App extends Component {
 
           <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</p>
           <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }</p>
+          <button
+            onClick={() => {this.makeRental()} }
+          >
+            Make Rental
+          </button>
 
           <Switch>
             <Route path="/search">
