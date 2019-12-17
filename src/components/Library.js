@@ -1,11 +1,11 @@
 import React from 'react';
 import Movie from './Movie';
 
-const Library = ({ library, selectMovieCallback }) => {
+const Library = ({ library, movieCallback }) => {
   const rentalLibrary = library.map((movie) => {
     return <Movie key={movie.id}
     {...movie}
-    selectMovieCallback={selectMovieCallback} />
+    movieCallback={movieCallback} />
   });
 
   return (

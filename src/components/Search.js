@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
   constructor(props) {
@@ -44,14 +45,9 @@ class Search extends Component {
     }
   }
 
-
-
-
-
-
   render() {
     const formattedResults = this.state.searchResults.map((movie) => {
-      return <Movie key={movie.external_id} {...movie} />
+      return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.movieCallback } />
     });
 
     return (
@@ -82,5 +78,8 @@ class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  movieCallback: PropTypes.func.isRequired,
+}
 
 export default Search;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
 import './App.css';
 
 import {
@@ -80,21 +79,43 @@ class App extends Component {
         selectedCustomer.movies_checked_out_count += 1
 
         this.setState({ 
-          // customers: customers,
           selectedCustomer: selectedCustomer,
         });
 
         this.setState({ 
-          // customers: customers,
           selectedCustomer: {},
           selectedMovie: {},
         });
-
-
       })
       .catch((error) => {
         this.setState({ error: error.message });
       });
+  }
+
+  addToLibrary = () => {
+    // console.log("Trying to add movie");
+    // const data = {
+    //   title:
+    //   overview:
+    // };
+
+    // axios.post(`${ this.props.baseUrl }movies`, data)
+    //   .then((response) => {
+    //     const selectedCustomer = this.state.selectedCustomer
+    //     selectedCustomer.movies_checked_out_count += 1
+
+    //     this.setState({ 
+    //       selectedCustomer: selectedCustomer,
+    //     });
+
+    //     this.setState({ 
+    //       selectedCustomer: {},
+    //       selectedMovie: {},
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     this.setState({ error: error.message });
+    //   });
   }
   
 
@@ -129,10 +150,10 @@ class App extends Component {
 
           <Switch>
             <Route path="/search">
-              <Search initialArr={[]} baseUrl={this.props.baseUrl} />
+              <Search initialArr={[]} baseUrl={this.props.baseUrl} movieCallback={ this.addToLibrary } />
             </Route>
             <Route path="/library">
-              <Library library={this.state.library} selectMovieCallback={ this.selectMovie }/>
+              <Library library={this.state.library} movieCallback={ this.selectMovie }/>
             </Route>
             <Route path="/customers">
               <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
