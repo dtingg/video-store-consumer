@@ -7,23 +7,25 @@ const Movie = (props) => {
 
   return (
     <div>
-      {id}
-      {title}
-      {overview}
-      {release_date}
+      <img src={image_url}></img>
+
+      {/* {id} */}
+      <p>{title}</p>
+      <p>{overview}</p>
+      <p>{release_date}</p>
+      
+      {/* {external_id} */}
     </div>
   );
 };
 
-// PetCard.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   name: PropTypes.string.isRequired,
-  // species: PropTypes.string.isRequired,
-  // location: PropTypes.string,
-  // images: PropTypes.array,
-  // about: PropTypes.string,
-  // selectPet: PropTypes.func.isRequired,
-  // removePet: PropTypes.func,
-// }
+Movie.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  external_id: PropTypes.number.isRequired,
+}
 
 export default Movie;
