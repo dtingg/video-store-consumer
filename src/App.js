@@ -20,8 +20,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      selectedMovie: 'Happy Feet',
-      selectedCustomer: 'Penguins',
+      selectedMovie: '',
+      selectedCustomer: '',
       library: [],
       customers: [],
       error: "",
@@ -74,7 +74,8 @@ class App extends Component {
             </ul>
           </nav>
 
-          {/* <p>{this.state.customers}</p> */}
+          <p>Selected Customer: {this.state.selectedCustomer}</p>
+          <p>Selected Movie: {this.state.selectedMovie}</p>
 
           <Switch>
             <Route path="/search">

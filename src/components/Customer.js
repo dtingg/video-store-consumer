@@ -17,13 +17,11 @@ const Customer = (props) => {
 
   return (
     <div>
-      <p>{ id }</p>
+      {/* <p>ID { id }</p> */}
       <p>{ name }</p>
-      <p>{ registered_at }</p>
+      {/* <p>{ registered_at }</p> */}
       <p>{ address }</p>
-      <p>{ city }</p>
-      <p>{ state }</p>
-      <p>{ postal_code }</p>
+      <p>{ city }, { state } { postal_code }</p>
       <p>{ phone }</p>
       <p>{ account_credit }</p>
       <p>{ movies_checked_out_count }</p>
