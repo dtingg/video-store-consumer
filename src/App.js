@@ -76,16 +76,21 @@ class App extends Component {
 
     axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }/check-out`, data)
       .then((response) => {
-        const updatedCustomers = this.state.customers;
-
-        updatedCustomers.movies_checked_out_count = 
-
-        // updatedData.push(response.data);
+        const selectedCustomer = this.state.selectedCustomer
+        selectedCustomer.movies_checked_out_count += 1
 
         this.setState({ 
-          selectedMovie: {},
-          selectedCustomer: {},
+          // customers: customers,
+          selectedCustomer: selectedCustomer,
         });
+
+        this.setState({ 
+          // customers: customers,
+          selectedCustomer: {},
+          selectedMovie: {},
+        });
+
+
       })
       .catch((error) => {
         this.setState({ error: error.message });
