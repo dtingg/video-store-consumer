@@ -20,7 +20,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      selectedMovie: '',
+      selectedMovie: {},
       selectedCustomer: {},
       library: [],
       customers: [],
@@ -64,23 +64,28 @@ class App extends Component {
 
   makeRental = () => {
     const today = new Date();
-    const dueDate = today.setDate(today.getDate() + 7);
+
+    const dueDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
+
     const data = {
       customer_id: this.state.selectedCustomer.id,
-      due_date: "2019-12-25",
+      due_date: dueDate,
     };
 
-    console.log(data.due_date);
+
 
     axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }/check-out`, data)
       .then((response) => {
-        // const updatedData = this.state.cards;
+        const updatedCustomers = this.state.customers;
+
+        updatedCustomers.movies_checked_out_count = 
+
         // updatedData.push(response.data);
 
-        // this.setState({ 
-        //   cards: updatedData,
-        //   errors: '', 
-        // });
+        this.setState({ 
+          selectedMovie: {},
+          selectedCustomer: {},
+        });
       })
       .catch((error) => {
         this.setState({ error: error.message });
