@@ -27,13 +27,8 @@ class Search extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
 
-    
-
     if (this.state.query) {
-      // this.props.addCardCallback(this.state);
-
       const results = this.props.currentLibrary.filter((element) => element.title.includes(this.state.query))
-      // this.setState(libraryResults: results)
 
       const search_url = `${this.props.baseUrl}/movies?query=${this.state.query}`;
 
@@ -44,10 +39,6 @@ class Search extends Component {
         .catch((error) => {
           this.setState({ error: error.message, libraryResults: results, query: "" });
         });
-
-      // this.setState({
-      //   query: '',
-      // });
     }
   }
 
@@ -59,8 +50,6 @@ class Search extends Component {
     const formattedResults = this.state.searchResults.map((movie) => {
       return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.addToLibraryCallback } action={"Add to Library"} />
     });
-
-
 
     return (
       <div>
@@ -84,7 +73,7 @@ class Search extends Component {
             onClick={ this.onSubmitHandler }
           />
         </form>
-        <h3>Results from your library</h3>
+        <h3>Library results</h3>
         { libraryResults }
         <h3>External results</h3>
         { formattedResults }

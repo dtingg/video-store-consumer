@@ -7,7 +7,6 @@ const Movie = (props) => {
 
   const onSelectMovie = () => {
     movieCallback(id, title, overview, release_date, image_url, external_id);
-    // movieCallback(id);
   }
 
   return (

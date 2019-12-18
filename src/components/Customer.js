@@ -7,14 +7,6 @@ import PropTypes from 'prop-types';
 const Customer = (props) => {
   const { id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count, selectCustomerCallback } = props;
 
-  // const onselectPet = () => {
-  //   selectPet(id);
-  // }
-
-  // const onremovePet = () => {
-  //   removePet(id);
-  // }
-
   return (
     <div>
       <p>{ name }</p>
@@ -44,8 +36,6 @@ Customer.propTypes = {
   account_credit: PropTypes.number.isRequired,
   movies_checked_out_count: PropTypes.number.isRequired,
   selectCustomerCallback: PropTypes.func.isRequired,
-  // postal_code: PropTypes.func.isRequired,
-  // removePet: PropTypes.func,
 }
 
 export default Customer;

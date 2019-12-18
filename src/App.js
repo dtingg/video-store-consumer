@@ -164,7 +164,6 @@ class App extends Component {
           >Remove Movie</button>
           </p>
 
-
           <button
             onClick={() => {this.makeRental()} }
           >
@@ -190,6 +189,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App
