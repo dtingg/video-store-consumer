@@ -190,6 +190,9 @@ class App extends Component {
               <li>
                 <Link to="/customers">Customers</Link>
               </li>
+              <li>
+                <Link to="/customerdetail">Customer Detail</Link>
+              </li>
             </ul>
           </nav>
 
@@ -223,6 +226,9 @@ class App extends Component {
             </Route>
             <Route path="/customers">
               <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
+            </Route>
+            <Route path="/customerdetail">
+              <CustomerDetail customers={this.state.customers} />
             </Route>
             <Route path="/">
               <Home />
