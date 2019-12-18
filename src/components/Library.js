@@ -12,7 +12,7 @@ const Library = ({ library, movieCallback }) => {
   });
 
   return (
-    <div className="container">
+    <div className="container clear-header">
       <h2>Library</h2>
       {/* <div className="card-deck"> */}
         { rentalLibrary }
