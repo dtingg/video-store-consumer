@@ -61,6 +61,14 @@ class App extends Component {
     this.setState({ selectedMovie: foundMovie });
   }
 
+  removeSelectedCustomer = () => {
+    this.setState({ selectedCustomer: {}});
+  }
+
+  removeSelectedMovie = () => {
+    this.setState({ selectedMovie: {}});
+  }
+
   makeRental = () => {
     const today = new Date();
 
@@ -70,8 +78,6 @@ class App extends Component {
       customer_id: this.state.selectedCustomer.id,
       due_date: dueDate,
     };
-
-
 
     axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }/check-out`, data)
       .then((response) => {
@@ -125,7 +131,6 @@ class App extends Component {
       });
   }
   
-
   render() {
     return (
       <Router>
@@ -147,8 +152,19 @@ class App extends Component {
             </ul>
           </nav>
 
-          <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</p>
-          <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }</p>
+          <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }          
+          <button
+            onClick={() => {this.removeSelectedCustomer()} }
+          >Remove Customer</button>
+          </p>
+
+          <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }
+          <button
+            onClick={() => {this.removeSelectedMovie()} }
+          >Remove Movie</button>
+          </p>
+
+
           <button
             onClick={() => {this.makeRental()} }
           >
