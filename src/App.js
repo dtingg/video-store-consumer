@@ -183,22 +183,29 @@ class App extends Component {
 
           <div className="rental-container">
             <div>
-            <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }          
-            <button
-              onClick={() => {this.removeSelectedCustomer()} }
-            >Remove Customer</button>
-            </p>
+              <p>Selected Customer: <div className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</div>        
+              <button
+                className="btn btn-secondary" 
+                onClick={() => {this.removeSelectedCustomer()} }
+              >
+                Remove Customer
+              </button>
+              </p>
             </div>
 
             <div>
-            <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }
-            <button
-              onClick={() => {this.removeSelectedMovie()} }
-            >Remove Movie</button>
-            </p>
+              <p>Selected Movie: <div className="rental-selection">{ this.state.selectedMovie ? this.state.selectedMovie.title : '' }</div>
+              <button
+                className="btn btn-secondary" 
+                onClick={() => {this.removeSelectedMovie()} }
+              >
+                Remove Movie
+              </button>
+              </p>
             </div>
 
             <button
+              className="btn btn-secondary" 
               onClick={() => {this.makeRental()} }
             >
               Make Rental
