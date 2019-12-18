@@ -138,24 +138,9 @@ class App extends Component {
   }
 
   addToLibrary = (newMovie) => {
-    // const data = {
-    //   title: title,
-    //   overview: overview,
-    //   release_date: release_date,
-    //   image_url: image_url,
-    //   external_id: external_id,
-    // };
 
     axios.post(`${ this.props.baseUrl }movies`, newMovie)
       .then((response) => {
-        // const newMovie = {
-        //   id: response.data.id,
-        //   title: data.title,
-        //   overview: data.overview,
-        //   release_date: data.release_date,
-        //   image_url: data.image_url,
-        //   external_id: data.external_id,
-        // };
 
         const updatedLibrary = this.state.library;
         updatedLibrary.push(newMovie);
@@ -178,7 +163,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <nav>
+          <div className="">
+          <nav className="">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -215,6 +201,7 @@ class App extends Component {
 
           { this.state.flash.length > 0 ? <Notification classification={ "flash" } message={ this.state.flash } /> : '' }
           { this.state.error.length > 0 ? <Notification classification={ "error" } message={ this.state.error } /> : '' }
+          </div>
 
           <Switch>
             <Route path="/search">

@@ -1,6 +1,9 @@
 import React from 'react';
 import Customer from './Customer';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Customers.css';
+
 const Customers = ({ customers, selectCustomerCallback }) => {
   const customerList = customers.map((customer) => {
     return <Customer key={customer.id}
@@ -11,8 +14,8 @@ const Customers = ({ customers, selectCustomerCallback }) => {
 
   return (
     <div>
-      <h2>Customers</h2>
-      { customerList }
+      <h1 className="customers-title">Customers</h1>
+      <div className="customers-container">{ customerList }</div>
     </div>
   )
 }
