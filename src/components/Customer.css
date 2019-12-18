@@ -1,0 +1,38 @@
+.customer-card {
+  width: 18rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px lightgray solid;
+}
+
+.customer-image-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: lightslategray;
+}
+
+.customer-name {
+  margin-top: 0.8rem;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.customer-info > p {
+  margin-bottom: 0.25rem;
+}
+
+.customer-info {
+  height: 10rem;
+}
+
+.customer-button-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.customer-label {
+  font-weight: bold;
+}
