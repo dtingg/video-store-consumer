@@ -104,7 +104,7 @@ class App extends Component {
   makeRental = () => {
     const today = new Date();
 
-    const dueDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
+    const dueDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 
     const data = {
       customer_id: this.state.selectedCustomer.id,
@@ -156,6 +156,17 @@ class App extends Component {
           flash: '',
         });
       });
+  }
+
+  returnRental = (customerID) => {
+    const updateCustomer = this.state.customers.find((customer) => customer.id === customerID);
+    updateCustomer.movies_checked_out_count -= 1;
+
+    this.setState({
+      updateCustomer,
+      error: '',
+      flash: '',
+    })
   }
   
   render() {
@@ -229,7 +240,7 @@ class App extends Component {
               <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
             </Route>
             <Route path="/customerdetail">
-              <CustomerDetail customers={this.state.customers} baseUrl={this.props.baseUrl} />
+              <CustomerDetail customers={this.state.customers} baseUrl={this.props.baseUrl} returnRentalCallback={ this.returnRental } />
             </Route>
             <Route path="/">
               <Home />

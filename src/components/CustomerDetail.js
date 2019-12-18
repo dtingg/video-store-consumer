@@ -59,6 +59,8 @@ class CustomerDetail extends Component {
         this.setState({ 
           checkOutList: updatedList,
         });
+
+        this.props.returnRentalCallback(this.state.customerID);
       })
       .catch((error) => {
         console.log(error);
@@ -78,12 +80,15 @@ class CustomerDetail extends Component {
         <td>{ rental.due_date }</td>
         <td>{ rental.returned ? "RETURNED" : "CHECKED-OUT" }</td>
         <td>
-          <button 
-            className="btn btn-primary" 
-            onClick={() => {this.returnMovie(rental.title)} }
-          >
-          Return
-          </button></td>
+          { rental.returned ? "" : 
+            <button 
+              className="btn btn-primary" 
+              onClick={() => {this.returnMovie(rental.title)} }
+            >
+            Return
+            </button>
+          }
+        </td>
       </tr>
       )
     });
