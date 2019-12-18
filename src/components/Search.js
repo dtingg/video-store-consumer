@@ -71,7 +71,7 @@ class Search extends Component {
     });
 
     return (
-      <div>
+      <div className="clear-header">
         <form onSubmit={ this.onSubmitHandler }>
           <h1>Search for a Movie</h1>
           <div >
