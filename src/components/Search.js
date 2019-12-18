@@ -90,11 +90,15 @@ class Search extends Component {
             />
           </div>
         </form>
-        <h3>Library results</h3>
-        { libraryResults }
+        <div className="container">
+          { libraryResults.length === 0 ? "" : <h3>Library results</h3> }
+          { libraryResults }
+        </div>
         <hr></hr>
-        <h3>External results</h3>
-        { formattedResults }
+        <div className="container">
+          { formattedResults.length === 0 ? "" : <h3>External results</h3> }
+          { formattedResults }
+        </div>
       </div>
     )
   }
