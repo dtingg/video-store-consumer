@@ -231,7 +231,7 @@ class App extends Component {
               <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
             </Route>
             <Route path="/customerdetail">
-              <CustomerDetail customers={this.state.customers} />
+              <CustomerDetail customers={this.state.customers} baseUrl={this.props.baseUrl} />
             </Route>
             <Route path="/">
               <Home />

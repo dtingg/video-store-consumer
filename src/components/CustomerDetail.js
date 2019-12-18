@@ -33,7 +33,7 @@ class CustomerDetail extends Component {
     const customerID = this.props.customers.find((customer) => customer.name === this.state.customerName).id;
 
     if (customerID ) {
-      axios.get(`http://localhost:3000/customers/${customerID}`)
+      axios.get(`${this.props.baseUrl}customers/${customerID}`)
         .then((response) => {
           this.setState({ 
             customerID: customerID,
@@ -49,7 +49,7 @@ class CustomerDetail extends Component {
   returnMovie = (title) => {
     const data = {customer_id: this.state.customerID};
 
-    axios.post(`http://localhost:3000/rentals/${title}/return`, data)
+    axios.post(`${this.props.baseUrl}rentals/${title}/return`, data)
       .then((response) => {
         console.log(response.data);
 
