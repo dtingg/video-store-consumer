@@ -47,13 +47,27 @@ class Search extends Component {
     }
   }
 
+  updateSearchResults = (id, title, overview, release_date, image_url, external_id) => {
+    const newMovie = {id: id, title: title, overview: overview, release_date: release_date, image_url: image_url, external_id: external_id}
+
+    const libraryResults = this.state.libraryResults;
+    libraryResults.push(newMovie);
+
+    let searchResults = this.state.searchResults;
+    searchResults = searchResults.filter((element) => (element.external_id !== newMovie.external_id))
+
+    this.setState({libraryResults: libraryResults, searchResults: searchResults})
+
+    this.props.addToLibraryCallback(newMovie)
+  }
+
   render() {
     const libraryResults = this.state.libraryResults.map((movie) => {
       return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.selectMovieCallback } action={"Select Movie"}/>
     });
 
     const formattedResults = this.state.searchResults.map((movie) => {
-      return <Movie key={movie.external_id} {...movie} movieCallback={ this.props.addToLibraryCallback } action={"Add to Library"} />
+      return <Movie key={movie.external_id} {...movie} movieCallback={ this.updateSearchResults } action={"Add to Library"} />
     });
 
     return (

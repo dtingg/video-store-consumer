@@ -135,25 +135,25 @@ class App extends Component {
       });
   }
 
-  addToLibrary = (id, title, overview, release_date, image_url, external_id) => {
-    const data = {
-      title: title,
-      overview: overview,
-      release_date: release_date,
-      image_url: image_url,
-      external_id: external_id,
-    };
+  addToLibrary = (newMovie) => {
+    // const data = {
+    //   title: title,
+    //   overview: overview,
+    //   release_date: release_date,
+    //   image_url: image_url,
+    //   external_id: external_id,
+    // };
 
-    axios.post(`${ this.props.baseUrl }movies`, data)
+    axios.post(`${ this.props.baseUrl }movies`, newMovie)
       .then((response) => {
-        const newMovie = {
-          id: response.data.id,
-          title: data.title,
-          overview: data.overview,
-          release_date: data.release_date,
-          image_url: data.image_url,
-          external_id: data.external_id,
-        };
+        // const newMovie = {
+        //   id: response.data.id,
+        //   title: data.title,
+        //   overview: data.overview,
+        //   release_date: data.release_date,
+        //   image_url: data.image_url,
+        //   external_id: data.external_id,
+        // };
 
         const updatedLibrary = this.state.library;
         updatedLibrary.push(newMovie);
