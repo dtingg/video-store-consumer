@@ -28,7 +28,7 @@ class Search extends Component {
     event.preventDefault();
 
     if (this.state.query) {
-      const results = this.props.currentLibrary.filter((element) => element.title.includes(this.state.query))
+      const results = this.props.currentLibrary.filter((element) => element.title.toLowerCase().includes(this.state.query.toLowerCase()))
 
       const search_url = `${this.props.baseUrl}/movies?query=${this.state.query}`;
 
