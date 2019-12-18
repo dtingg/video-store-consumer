@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Customer.css';
 
@@ -11,14 +10,14 @@ const Customer = (props) => {
 
   return (
     <div className="card customer-card">
-      <div className="customer-image-container"><img src={robots[id % 10]}></img></div>
+      <div className="customer-image-container"><img src={robots[id % 10]} alt="robot"></img></div>
       <h4 className="customer-name">{ name }</h4>
       <div className="customer-info">
         <p>{ address }</p>
         <p>{ city }, { state } { postal_code }</p>
         <p>{ phone }</p>
         <p>
-          <span className="customer-label">Number Movies Checked Out: </span> 
+          <span className="customer-label">Movies Checked Out: </span> 
           { movies_checked_out_count }
         </p>
       </div>
