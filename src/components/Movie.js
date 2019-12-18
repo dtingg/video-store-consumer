@@ -14,17 +14,13 @@ const Movie = (props) => {
     <div className="card mb-3">
     <div className="row no-gutters">
       <div className="col-md-2">
-        <img src={image_url} className="card-img movie-img" alt="..."></img>
+        <img src={image_url} className="card-img movie-img" alt={title}></img>
       </div>
       <div className="col-md-10">
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{overview}</p>
           <p className="card-text"><small className="text-muted">Released: { release_date }</small></p>
-
-
-
-
           <button type="button" className="btn btn-primary" aria-label="Select" onClick={ onSelectMovie }>{ action }</button>
         </div>
       </div>
