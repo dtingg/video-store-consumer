@@ -26,3 +26,47 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.clear-header {
+  margin-top: 15rem;
+}
+
+nav {
+  background-color: lightblue;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px;
+  margin-bottom: 0;
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+.rental-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  background-color: white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.rental-container p {
+  margin-bottom: 0;
+}
+
+.rental-selection {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: .375rem .75rem;
+  color: #007bff;
+  border: #007bff 1px solid;
+  min-width: 10rem;
+  min-height: 2.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}

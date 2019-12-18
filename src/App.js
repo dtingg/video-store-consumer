@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -136,24 +138,9 @@ class App extends Component {
   }
 
   addToLibrary = (newMovie) => {
-    // const data = {
-    //   title: title,
-    //   overview: overview,
-    //   release_date: release_date,
-    //   image_url: image_url,
-    //   external_id: external_id,
-    // };
 
     axios.post(`${ this.props.baseUrl }movies`, newMovie)
       .then((response) => {
-        // const newMovie = {
-        //   id: response.data.id,
-        //   title: data.title,
-        //   overview: data.overview,
-        //   release_date: data.release_date,
-        //   image_url: data.image_url,
-        //   external_id: data.external_id,
-        // };
 
         const updatedLibrary = this.state.library;
         updatedLibrary.push(newMovie);
@@ -176,7 +163,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <nav>
+          <div className="fixed-top">
+          <nav className="">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -196,26 +184,40 @@ class App extends Component {
             </ul>
           </nav>
 
-          <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }          
-          <button
-            onClick={() => {this.removeSelectedCustomer()} }
-          >Remove Customer</button>
-          </p>
+          <div className="rental-container">
+            <div>
+              <p>Selected Customer: <div className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</div>        
+              <button
+                className="btn btn-secondary" 
+                onClick={() => {this.removeSelectedCustomer()} }
+              >
+                Remove Customer
+              </button>
+              </p>
+            </div>
 
-          <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }
-          <button
-            onClick={() => {this.removeSelectedMovie()} }
-          >Remove Movie</button>
-          </p>
+            <div>
+              <p>Selected Movie: <div className="rental-selection">{ this.state.selectedMovie ? this.state.selectedMovie.title : '' }</div>
+              <button
+                className="btn btn-secondary" 
+                onClick={() => {this.removeSelectedMovie()} }
+              >
+                Remove Movie
+              </button>
+              </p>
+            </div>
 
-          <button
-            onClick={() => {this.makeRental()} }
-          >
-            Make Rental
-          </button>
+            <button
+              className="btn btn-secondary" 
+              onClick={() => {this.makeRental()} }
+            >
+              Make Rental
+            </button>
+          </div>
 
           { this.state.flash.length > 0 ? <Notification classification={ "flash" } message={ this.state.flash } /> : '' }
           { this.state.error.length > 0 ? <Notification classification={ "error" } message={ this.state.error } /> : '' }
+          </div>
 
           <Switch>
             <Route path="/search">

@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Customer.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Customer.css';
 
 const Customer = (props) => {
   const { id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count, selectCustomerCallback } = props;
 
   return (
-    <div>
-      <img src="green-robot.png"></img>
-      <p>{ name }</p>
-      <p>{ address }</p>
-      <p>{ city }, { state } { postal_code }</p>
-      <p>{ phone }</p>
-      <p>{ account_credit }</p>
-      <p>{ movies_checked_out_count }</p>
-      <button
+    <div className="card customer-card">
+      <div className="customer-image-container"><img src="green-robot.png"></img></div>
+      <h4 className="customer-name">{ name }</h4>
+      <div className="customer-info">
+        <p>{ address }</p>
+        <p>{ city }, { state } { postal_code }</p>
+        <p>{ phone }</p>
+        <p>
+          <span className="customer-label">Number Movies Checked Out: </span> 
+          { movies_checked_out_count }
+        </p>
+      </div>
+      <div className="customer-button-container">
+        <button 
+          className="btn btn-primary" 
           onClick={() => {selectCustomerCallback(id)} }
         >
           Select
-      </button>
+        </button>
+      </div>
     </div>
   );
 };
