@@ -32,8 +32,6 @@ class App extends Component {
     };
   }
 
-  // base_url = "http://localhost:3000/"
-
   componentDidMount() {
     const customer_url = `${this.props.baseUrl}/customers`;
     const rental_lib_url = `${this.props.baseUrl}/movies`;
@@ -50,7 +48,7 @@ class App extends Component {
         this.setState({ 
           error: error.message,
           flash: '',
-         });
+        });
       });
 
     axios.get(rental_lib_url)
@@ -185,7 +183,7 @@ class App extends Component {
             </ul>
           </nav>
 
-          <div className="rental-container">
+          <div className="rental-container container">
             <div>
               <p>Selected Customer: <span className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</span>        
               <button

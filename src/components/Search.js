@@ -77,7 +77,6 @@ class Search extends Component {
         <form onSubmit={ this.onSubmitHandler }>
           <h1 className="search-title">Search for a Movie</h1>
           <div className="search-title">
-            {/* <label htmlFor="query">Query: </label> */}
             <input
               className="rental-selection search-input"            
               name="query"

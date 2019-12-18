@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Search.css';
 import './CustomerDetail.css';
