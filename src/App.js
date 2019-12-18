@@ -16,6 +16,7 @@ import Search from './components/Search';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Notification from './components/Notification';
+import CustomerDetail from './components/CustomerDetail';
 
 class App extends Component {
   constructor(props) {
@@ -186,7 +187,7 @@ class App extends Component {
 
           <div className="rental-container">
             <div>
-              <p>Selected Customer: <div className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</div>        
+              <p>Selected Customer: <span className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</span>        
               <button
                 className="btn btn-secondary" 
                 onClick={() => {this.removeSelectedCustomer()} }
@@ -197,7 +198,7 @@ class App extends Component {
             </div>
 
             <div>
-              <p>Selected Movie: <div className="rental-selection">{ this.state.selectedMovie ? this.state.selectedMovie.title : '' }</div>
+              <p>Selected Movie: <span className="rental-selection">{ this.state.selectedMovie ? this.state.selectedMovie.title : '' }</span>
               <button
                 className="btn btn-secondary" 
                 onClick={() => {this.removeSelectedMovie()} }
