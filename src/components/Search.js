@@ -34,7 +34,12 @@ class Search extends Component {
 
       axios.get(search_url)
         .then((response) => {
-          this.setState({ searchResults: response.data, libraryResults: results, query: "" });
+          const searchResults = response.data
+          const filteredResults = searchResults.filter((element) => !results.find((resultsElement) => {
+            return resultsElement.external_id === element.external_id
+          }));
+
+          this.setState({ searchResults: filteredResults, libraryResults: results, query: "" });
         })
         .catch((error) => {
           this.setState({ error: error.message, libraryResults: results, query: "" });
@@ -56,25 +61,24 @@ class Search extends Component {
         <form onSubmit={ this.onSubmitHandler }>
           <h1>Search for a Movie</h1>
           <div >
-            <div>
-              <label htmlFor="query">Query: </label>
-              <input
-                name="query"
-                id="query"
-                onChange={ this.onFieldChange }
-                value={ this.state.query }
-              />
-            </div>
+            <label htmlFor="query">Query: </label>
+            <input
+              name="query"
+              id="query"
+              onChange={ this.onFieldChange }
+              value={ this.state.query }
+            />
+            <input
+              type="submit"
+              name="submit"
+              value="Search"
+              onClick={ this.onSubmitHandler }
+            />
           </div>
-          <input
-            type="submit"
-            name="submit"
-            value="Search"
-            onClick={ this.onSubmitHandler }
-          />
         </form>
         <h3>Library results</h3>
         { libraryResults }
+        <hr></hr>
         <h3>External results</h3>
         { formattedResults }
       </div>
