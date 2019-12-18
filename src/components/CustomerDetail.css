@@ -1,3 +1,7 @@
 .customer-history-table {
   margin-top: 2rem;
 }
+
+.center-error-message {
+  text-align: center;
+}

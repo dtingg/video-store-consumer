@@ -14,6 +14,7 @@ class CustomerDetail extends Component {
       customerName: '',
       customerID: undefined,
       checkOutList: [],
+      error: '',
     };
   }
 
@@ -30,18 +31,34 @@ class CustomerDetail extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
 
-    const customerID = this.props.customers.find((customer) => customer.name === this.state.customerName).id;
+    const customer = this.props.customers.find((customer) => customer.name.toLowerCase() === this.state.customerName.toLowerCase());
+    if (!customer) {
+      this.setState({ 
+        error: "Customer name does not match any records on file.",
+        customerName: '',
+        customerID: undefined,
+        checkOutList: [],
+      });
+      return
+    }
 
+    const customerID = customer.id
     if (customerID ) {
       axios.get(`${this.props.baseUrl}customers/${customerID}`)
         .then((response) => {
           this.setState({ 
             customerID: customerID,
             checkOutList: response.data,
+            error: '',
           });
         })
         .catch((error) => {
-          console.log(error);
+          this.setState({ 
+            error: error.message,
+            customerName: '',
+            customerID: undefined,
+            checkOutList: [],
+          });
         });
     }
   }
@@ -51,29 +68,28 @@ class CustomerDetail extends Component {
 
     axios.post(`${this.props.baseUrl}rentals/${title}/return`, data)
       .then((response) => {
-        console.log(response.data);
-
         const updatedList = this.state.checkOutList;
         const returnedMovie = updatedList.find((rental) => rental.title === title);
         returnedMovie.returned = true;
 
         this.setState({ 
           checkOutList: updatedList,
+          error: '',
         });
 
         this.props.returnRentalCallback(this.state.customerID);
       })
       .catch((error) => {
-        console.log(error);
-        // this.setState({
-          // error: error.message,
-          // flash: '',
-        // });
+        this.setState({
+          error: error.message,
+          customerName: '',
+          customerID: undefined,
+          checkOutList: [],
+        });
       });
   }
 
   render() {
-    console.log(this.state.checkOutList);
     const formattedResults = this.state.checkOutList.map((rental, i) => { return( 
       <tr key={ i }>
         <td>{ rental.title }</td>
@@ -131,6 +147,11 @@ class CustomerDetail extends Component {
             <tbody>{ formattedResults }</tbody>
           </table>
         </div>
+        { this.state.error ? 
+          <p className="center-error-message alert alert-danger">{ this.state.error }</p>
+          :
+          ""
+        }
       </div>
     )
   }
