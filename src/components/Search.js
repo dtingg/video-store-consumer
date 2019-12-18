@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Search.css';
 import Movie from './Movie';
 import PropTypes from 'prop-types';
 
@@ -73,16 +75,18 @@ class Search extends Component {
     return (
       <div className="clear-header">
         <form onSubmit={ this.onSubmitHandler }>
-          <h1>Search for a Movie</h1>
-          <div >
-            <label htmlFor="query">Query: </label>
+          <h1 className="search-title">Search for a Movie</h1>
+          <div className="search-title">
+            {/* <label htmlFor="query">Query: </label> */}
             <input
+              className="rental-selection search-input"            
               name="query"
               id="query"
               onChange={ this.onFieldChange }
               value={ this.state.query }
             />
             <input
+              className="btn btn-primary"
               type="submit"
               name="submit"
               value="Search"

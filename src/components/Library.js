@@ -13,12 +13,8 @@ const Library = ({ library, movieCallback }) => {
 
   return (
     <div className="container clear-header">
-      <h2>Library</h2>
-      {/* <div className="card-deck"> */}
-        { rentalLibrary }
-
-      {/* </div> */}
-        
+      <h1 className="library-title">Library</h1>
+      { rentalLibrary }
     </div>
 
   )
