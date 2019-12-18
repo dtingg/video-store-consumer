@@ -1,5 +1,7 @@
 import React from 'react';
 import Movie from './Movie';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Library.css';
 
 const Library = ({ library, movieCallback }) => {
   const rentalLibrary = library.map((movie) => {
@@ -10,10 +12,15 @@ const Library = ({ library, movieCallback }) => {
   });
 
   return (
-    <div>
+    <div className="container">
       <h2>Library</h2>
-      { rentalLibrary }
+      {/* <div className="card-deck"> */}
+        { rentalLibrary }
+
+      {/* </div> */}
+        
     </div>
+
   )
 }
 
