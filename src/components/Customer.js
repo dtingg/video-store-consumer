@@ -9,6 +9,7 @@ const Customer = (props) => {
 
   return (
     <div>
+      <img src="green-robot.png"></img>
       <p>{ name }</p>
       <p>{ address }</p>
       <p>{ city }, { state } { postal_code }</p>
