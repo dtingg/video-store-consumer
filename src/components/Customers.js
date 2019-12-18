@@ -13,7 +13,7 @@ const Customers = ({ customers, selectCustomerCallback }) => {
   })
 
   return (
-    <div>
+    <div className="clear-header">
       <h1 className="customers-title">Customers</h1>
       <div className="customers-container">{ customerList }</div>
     </div>

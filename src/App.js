@@ -163,7 +163,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <div className="">
+          <div className="fixed-top">
           <nav className="">
             <ul>
               <li>
@@ -181,23 +181,29 @@ class App extends Component {
             </ul>
           </nav>
 
-          <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }          
-          <button
-            onClick={() => {this.removeSelectedCustomer()} }
-          >Remove Customer</button>
-          </p>
+          <div className="rental-container">
+            <div>
+            <p>Selected Customer: { this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }          
+            <button
+              onClick={() => {this.removeSelectedCustomer()} }
+            >Remove Customer</button>
+            </p>
+            </div>
 
-          <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }
-          <button
-            onClick={() => {this.removeSelectedMovie()} }
-          >Remove Movie</button>
-          </p>
+            <div>
+            <p>Selected Movie: { this.state.selectedMovie ? this.state.selectedMovie.title : '' }
+            <button
+              onClick={() => {this.removeSelectedMovie()} }
+            >Remove Movie</button>
+            </p>
+            </div>
 
-          <button
-            onClick={() => {this.makeRental()} }
-          >
-            Make Rental
-          </button>
+            <button
+              onClick={() => {this.makeRental()} }
+            >
+              Make Rental
+            </button>
+          </div>
 
           { this.state.flash.length > 0 ? <Notification classification={ "flash" } message={ this.state.flash } /> : '' }
           { this.state.error.length > 0 ? <Notification classification={ "error" } message={ this.state.error } /> : '' }

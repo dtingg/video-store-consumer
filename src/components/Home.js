@@ -3,7 +3,7 @@ import React from 'react';
 const Home = () => {
 
   return (
-    <div>
+    <div className="clear-header">
       <h2>Home</h2>
       {/* <p>{props.movie}</p> */}
     </div>
