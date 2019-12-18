@@ -7,9 +7,11 @@ import './Customer.css';
 const Customer = (props) => {
   const { id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count, selectCustomerCallback } = props;
 
+  const robots = ["blue-robot.png", "glass-robot.png", "green-robot.png", "orange-robot.png", "pink-robot.png", "purple-robot.png", "red-robot.png", "short-robot.png", "spider-robot.png", "yellow-robot.png"]
+
   return (
     <div className="card customer-card">
-      <div className="customer-image-container"><img src="green-robot.png"></img></div>
+      <div className="customer-image-container"><img src={robots[id % 10]}></img></div>
       <h4 className="customer-name">{ name }</h4>
       <div className="customer-info">
         <p>{ address }</p>
