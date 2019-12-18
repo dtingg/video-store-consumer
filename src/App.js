@@ -16,6 +16,7 @@ import Search from './components/Search';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Notification from './components/Notification';
+import CustomerDetail from './components/CustomerDetail';
 
 class App extends Component {
   constructor(props) {
@@ -178,12 +179,15 @@ class App extends Component {
               <li>
                 <Link to="/customers">Customers</Link>
               </li>
+              <li>
+                <Link to="/customerdetail">Customer Detail</Link>
+              </li>
             </ul>
           </nav>
 
           <div className="rental-container">
             <div>
-              <p>Selected Customer: <div className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</div>        
+              <p>Selected Customer: <span className="rental-selection">{ this.state.selectedCustomer ? this.state.selectedCustomer.name : '' }</span>        
               <button
                 className="btn btn-secondary" 
                 onClick={() => {this.removeSelectedCustomer()} }
@@ -194,7 +198,7 @@ class App extends Component {
             </div>
 
             <div>
-              <p>Selected Movie: <div className="rental-selection">{ this.state.selectedMovie ? this.state.selectedMovie.title : '' }</div>
+              <p>Selected Movie: <span className="rental-selection">{ this.state.selectedMovie ? this.state.selectedMovie.title : '' }</span>
               <button
                 className="btn btn-secondary" 
                 onClick={() => {this.removeSelectedMovie()} }
@@ -225,6 +229,9 @@ class App extends Component {
             </Route>
             <Route path="/customers">
               <Customers customers={this.state.customers} selectCustomerCallback={ this.selectCustomer } />
+            </Route>
+            <Route path="/customerdetail">
+              <CustomerDetail customers={this.state.customers} />
             </Route>
             <Route path="/">
               <Home />
