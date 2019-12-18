@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Library from './components/Library';
 import Customers from './components/Customers';
+import Notification from './components/Notification';
 
 class App extends Component {
   constructor(props) {
@@ -23,50 +24,80 @@ class App extends Component {
       selectedCustomer: {},
       library: [],
       customers: [],
-      error: "",
+      flash: '',
+      error: '',
     };
   }
 
   // base_url = "http://localhost:3000/"
 
   componentDidMount() {
-    // const base_url = "localhost"
     const customer_url = `${this.props.baseUrl}/customers`;
     const rental_lib_url = `${this.props.baseUrl}/movies`;
 
     axios.get(customer_url)
       .then((response) => {
-        this.setState({ customers: response.data });
+        this.setState({ 
+          customers: response.data,
+          flash: '',
+          error: '',
+        });
       })
       .catch((error) => {
-        this.setState({ error: error.message });
+        this.setState({ 
+          error: error.message,
+          flash: '',
+         });
       });
 
     axios.get(rental_lib_url)
     .then((response) => {
-      this.setState({ library: response.data });
+      this.setState({ 
+        library: response.data,
+        flash: '',
+        error: '', 
+      });
     })
     .catch((error) => {
-      this.setState({ error: error.message });
+      this.setState({ 
+        error: error.message,
+        flash: '',
+      });
     });
   }
 
   selectCustomer = ( customerId ) => {
     const foundCustomer = this.state.customers.find((customer) => customer.id === customerId);
-    this.setState({ selectedCustomer: foundCustomer });
+    this.setState({ 
+      selectedCustomer: foundCustomer,
+      flash: '',
+      error: '', 
+    });
   }
 
   selectMovie = (id, title, overview, release_date, image_url, external_id) => {
     const foundMovie = this.state.library.find((movie) => movie.id === id);
-    this.setState({ selectedMovie: foundMovie });
+    this.setState({ 
+      selectedMovie: foundMovie,
+      flash: '',
+      error: '',
+    });
   }
 
   removeSelectedCustomer = () => {
-    this.setState({ selectedCustomer: {}});
+    this.setState({ 
+      selectedCustomer: {},
+      flash: '',
+      error: '',
+    });
   }
 
   removeSelectedMovie = () => {
-    this.setState({ selectedMovie: {}});
+    this.setState({ 
+      selectedMovie: {},
+      flash: '',
+      error: '',
+    });
   }
 
   makeRental = () => {
@@ -81,25 +112,30 @@ class App extends Component {
 
     axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }/check-out`, data)
       .then((response) => {
-        const selectedCustomer = this.state.selectedCustomer
-        selectedCustomer.movies_checked_out_count += 1
+        const selectedMovie = this.state.selectedMovie;
+        const selectedCustomer = this.state.selectedCustomer;
+        selectedCustomer.movies_checked_out_count += 1;
 
         this.setState({ 
           selectedCustomer: selectedCustomer,
+          error: '',
         });
 
         this.setState({ 
           selectedCustomer: {},
           selectedMovie: {},
+          flash: `${selectedMovie.title} has been checked out to ${selectedCustomer.name}!`,
         });
       })
       .catch((error) => {
-        this.setState({ error: error.message });
+        this.setState({ 
+          error: error.message,
+          flash: '',
+        });
       });
   }
 
   addToLibrary = (id, title, overview, release_date, image_url, external_id) => {
-    // console.log("Trying to add movie");
     const data = {
       title: title,
       overview: overview,
@@ -124,10 +160,15 @@ class App extends Component {
 
         this.setState({ 
           library: updatedLibrary,
+          flash: `${newMovie.title} has been added to the rental library!`,
+          error: '',
         });
       })
       .catch((error) => {
-        this.setState({ error: error.message });
+        this.setState({ 
+          error: error.message,
+          flash: '',
+        });
       });
   }
   
@@ -169,6 +210,9 @@ class App extends Component {
           >
             Make Rental
           </button>
+
+          { this.state.flash.length > 0 ? <Notification classification={ "flash" } message={ this.state.flash } /> : '' }
+          { this.state.error.length > 0 ? <Notification classification={ "error" } message={ this.state.error } /> : '' }
 
           <Switch>
             <Route path="/search">
