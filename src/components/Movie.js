@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import './Customer.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Movie.css';
 
 const Movie = (props) => {
   const { id, title, overview, release_date, image_url, external_id, movieCallback, action } = props;
@@ -10,24 +11,21 @@ const Movie = (props) => {
   }
 
   return (
-    <div>
-      <img src={image_url}></img>
-
-      {id}
-      <p>{title}</p>
-      <p>{overview}</p>
-      <p>{release_date}</p>
-      
-      {external_id}
-      <button
-          type="button"
-          className=""
-          aria-label="Select"
-          onClick={ onSelectMovie }
-        >
-          { action }
-        </button>
+    <div className="card mb-3">
+    <div className="row no-gutters">
+      <div className="col-md-4">
+        <img src={image_url} className="card-img" alt="..."></img>
+      </div>
+      <div className="col-md-8">
+        <div className="card-body">
+          <h5 className="card-title">{title}</h5>
+          <p className="card-text">{overview}</p>
+          <p className="card-text"><small className="text-muted">{release_date}</small></p>
+          <button type="button" className="btn btn-primary" aria-label="Select" onClick={ onSelectMovie }>{ action }</button>
+        </div>
+      </div>
     </div>
+  </div>
   );
 };
 
