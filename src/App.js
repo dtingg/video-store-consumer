@@ -17,6 +17,8 @@ import Library from './components/Library';
 import Customers from './components/Customers';
 import CustomerDetail from './components/CustomerDetail';
 
+import PropTypes from 'prop-types';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -128,7 +130,6 @@ class App extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
         this.setState({ 
           error: error.message,
           flash: '',
@@ -231,7 +232,7 @@ class App extends Component {
 
           <Switch>
             <Route path="/search">
-              <Search initialArr={[]} baseUrl={this.props.baseUrl} addToLibraryCallback={ this.addToLibrary } selectMovieCallback={ this.selectMovie } currentLibrary={ this.state.library }/>
+              <Search baseUrl={this.props.baseUrl} addToLibraryCallback={ this.addToLibrary } selectMovieCallback={ this.selectMovie } currentLibrary={ this.state.library }/>
             </Route>
             <Route path="/library">
               <Library library={this.state.library} movieCallback={ this.selectMovie }/>
@@ -250,6 +251,10 @@ class App extends Component {
       </Router>
     );
   }
+}
+
+App.propTypes = {
+  baseUrl: PropTypes.string.isRequired,
 }
 
 export default App

@@ -31,6 +31,7 @@ class CustomerDetail extends Component {
     event.preventDefault();
 
     const customer = this.props.customers.find((customer) => customer.name.toLowerCase() === this.state.customerName.toLowerCase());
+
     if (!customer) {
       this.setState({ 
         error: "Customer name does not match any records on file.",
@@ -41,7 +42,8 @@ class CustomerDetail extends Component {
       return
     }
 
-    const customerID = customer.id
+    const customerID = customer.id;
+
     if (customerID ) {
       axios.get(`${this.props.baseUrl}customers/${customerID}`)
         .then((response) => {
@@ -68,7 +70,7 @@ class CustomerDetail extends Component {
     axios.post(`${this.props.baseUrl}rentals/${title}/return`, data)
       .then((response) => {
         const updatedList = this.state.checkOutList;
-        const returnedMovie = updatedList.find((rental) => rental.title === title);
+        const returnedMovie = updatedList.find((rental) => (rental.title === title && rental.returned === false));
         returnedMovie.returned = true;
 
         this.setState({ 
@@ -131,8 +133,8 @@ class CustomerDetail extends Component {
           </div>
         </form>
         <div className="container">
-          <table className="table customer-history-table">
-            { formattedResults.length === 0 ? "" : 
+          { this.state.customerID === undefined ? "" : 
+            <table className="table customer-history-table">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -142,9 +144,9 @@ class CustomerDetail extends Component {
                   <th></th>
                 </tr>
               </thead> 
-            }
-            <tbody>{ formattedResults }</tbody>
-          </table>
+              <tbody>{ formattedResults }</tbody>
+            </table>
+          }
         </div>
         { this.state.error ? 
           <p className="center-error-message alert alert-danger">{ this.state.error }</p>
