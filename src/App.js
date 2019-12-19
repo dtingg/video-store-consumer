@@ -110,7 +110,7 @@ class App extends Component {
       due_date: dueDate,
     };
 
-    axios.post(`${ this.props.baseUrl }rentals/${ this.state.selectedMovie.title }/check-out`, data)
+    axios.post(`${ this.props.baseUrl }/rentals/${ this.state.selectedMovie.title }/check-out`, data)
       .then((response) => {
         const selectedMovie = this.state.selectedMovie;
         const selectedCustomer = this.state.selectedCustomer;
@@ -138,7 +138,7 @@ class App extends Component {
 
   addToLibrary = (newMovie) => {
 
-    axios.post(`${ this.props.baseUrl }movies`, newMovie)
+    axios.post(`${ this.props.baseUrl }/movies`, newMovie)
       .then((response) => {
 
         const updatedLibrary = this.state.library;
