@@ -32,8 +32,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const customer_url = `${this.props.baseUrl}/customers`;
-    const rental_lib_url = `${this.props.baseUrl}/movies`;
+    const customer_url = `${this.props.baseUrl}customers`;
+    const rental_lib_url = `${this.props.baseUrl}movies`;
 
     axios.get(customer_url)
       .then((response) => {
