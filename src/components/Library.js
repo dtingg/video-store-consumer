@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from './Movie';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Library.css';
 
@@ -18,6 +19,11 @@ const Library = ({ library, movieCallback }) => {
     </div>
 
   )
+}
+
+Library.propTypes = {
+  library: PropTypes.array.isRequired,
+  movieCallback: PropTypes.func.isRequired
 }
 
 export default Library;

@@ -33,7 +33,7 @@ Movie.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
+  release_date: PropTypes.string,
   image_url: PropTypes.string.isRequired,
   external_id: PropTypes.number.isRequired,
   movieCallback: PropTypes.func.isRequired,
