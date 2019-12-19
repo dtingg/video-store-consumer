@@ -31,6 +31,7 @@ class CustomerDetail extends Component {
     event.preventDefault();
 
     const customer = this.props.customers.find((customer) => customer.name.toLowerCase() === this.state.customerName.toLowerCase());
+
     if (!customer) {
       this.setState({ 
         error: "Customer name does not match any records on file.",
@@ -41,7 +42,8 @@ class CustomerDetail extends Component {
       return
     }
 
-    const customerID = customer.id
+    const customerID = customer.id;
+    
     if (customerID ) {
       axios.get(`${this.props.baseUrl}customers/${customerID}`)
         .then((response) => {
