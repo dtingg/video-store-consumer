@@ -26,7 +26,7 @@ const Customer = (props) => {
           className="btn btn-primary" 
           onClick={() => {selectCustomerCallback(id)} }
         >
-          Select
+          Select Customer
         </button>
       </div>
     </div>

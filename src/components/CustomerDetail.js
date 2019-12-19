@@ -156,4 +156,10 @@ class CustomerDetail extends Component {
   }
 }
 
+CustomerDetail.propTypes = {
+  customers: PropTypes.array.isRequired,
+  baseUrl: PropTypes.string.isRequired,
+  returnRentalCallback: PropTypes.func.isRequired
+}
+
 export default CustomerDetail;

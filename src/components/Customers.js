@@ -1,6 +1,6 @@
 import React from 'react';
 import Customer from './Customer';
-
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Customers.css';
 
@@ -19,6 +19,11 @@ const Customers = ({ customers, selectCustomerCallback }) => {
       <div className="customers-footer">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </div>
   )
+}
+
+Customers.propTypes = {
+  customers: PropTypes.array.isRequired,
+  selectCustomerCallback: PropTypes.func.isRequired
 }
 
 export default Customers;
