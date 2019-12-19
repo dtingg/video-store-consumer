@@ -108,7 +108,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  initialArr: PropTypes.array.isRequired,
+  initialArr: PropTypes.array,
   baseUrl: PropTypes.string,
   addToLibraryCallback: PropTypes.func.isRequired,
   selectMovieCallback: PropTypes.func.isRequired,
