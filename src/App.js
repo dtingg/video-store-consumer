@@ -225,8 +225,8 @@ class App extends Component {
             </button>
           </div>
 
-          { this.state.flash.length > 0 ? <Notification classification={ "flash" } message={ this.state.flash } /> : '' }
-          { this.state.error.length > 0 ? <Notification classification={ "error" } message={ this.state.error } /> : '' }
+          { this.state.flash.length > 0 ? <p className="center-error-message alert alert-success">{ this.state.flash }</p> : '' }
+          { this.state.error.length > 0 ? <p className="center-error-message alert alert-danger">{ this.state.error }</p> : '' }
           </div>
 
           <Switch>

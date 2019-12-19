@@ -70,3 +70,7 @@ nav ul {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+
+.center-error-message {
+  text-align: center;
+}
