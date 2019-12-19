@@ -130,7 +130,6 @@ class App extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
         this.setState({ 
           error: error.message,
           flash: '',
