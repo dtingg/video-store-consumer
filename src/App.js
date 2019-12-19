@@ -17,6 +17,8 @@ import Library from './components/Library';
 import Customers from './components/Customers';
 import CustomerDetail from './components/CustomerDetail';
 
+import PropTypes from 'prop-types';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -250,6 +252,10 @@ class App extends Component {
       </Router>
     );
   }
+}
+
+App.propTypes = {
+  baseUrl: PropTypes.string.isRequired,
 }
 
 export default App
