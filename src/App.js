@@ -15,7 +15,6 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Library from './components/Library';
 import Customers from './components/Customers';
-import Notification from './components/Notification';
 import CustomerDetail from './components/CustomerDetail';
 
 class App extends Component {
@@ -129,6 +128,7 @@ class App extends Component {
         });
       })
       .catch((error) => {
+        console.log(error);
         this.setState({ 
           error: error.message,
           flash: '',
